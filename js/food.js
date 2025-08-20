@@ -24,17 +24,17 @@ class Food {
         switch (type) {
             case 0: // Ralentissement
                 this.game.speed /= 2;
-                setTimeout(() => this.game.speed *= 2, 5000);
+                setTimeout(() => this.game.speed *= 2, 1000);
                 break;
             case 1: // Double points (appliqué lors de la consommation)
                 break;
             case 2: // Passage murs
                 this.game.tempInfinite = true;
-                setTimeout(() => this.game.tempInfinite = false, 5000);
+                setTimeout(() => this.game.tempInfinite = false, 1000);
                 break;
             case 3: // Réduction taille
                 this.game.snake.maxCells -= 2;
-                setTimeout(() => this.game.snake.maxCells += 2, 5000);
+                setTimeout(() => this.game.snake.maxCells += 2, 1000);
                 break;
         }
     }

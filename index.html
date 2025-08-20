@@ -564,7 +564,7 @@
             let powerUps = [];
             let direction = 'right';
             let nextDirection = 'right';
-            let gameSpeed = 10;
+            let gameSpeed = 3;
             let score = 0;
             let lives = 3;
             let level = 1;
@@ -924,7 +924,7 @@
             // Monter de niveau
             function levelUp() {
                 level++;
-                gameSpeed += 2;
+                gameSpeed += 1;
                 generateObstacles(2);
                 if (level === 5) showAchievement('level5');
 
@@ -1224,10 +1224,10 @@
                         btn.classList.add('active');
                         difficulty = btn.dataset.difficulty;
                         switch (difficulty) {
-                            case 'easy': gameSpeed = 8; break;
-                            case 'medium': gameSpeed = 12; break;
-                            case 'hard': gameSpeed = 16; break;
-                            case 'expert': gameSpeed = 20; break;
+                            case 'easy': gameSpeed = 3; break;
+                            case 'medium': gameSpeed =5 ; break;
+                            case 'hard': gameSpeed = 10; break;
+                            case 'expert': gameSpeed = 15; break;
                         }
                     });
                 });
