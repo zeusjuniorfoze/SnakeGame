@@ -1,0 +1,22 @@
+/* css/responsive.css */
+@media (orientation: landscape) {
+    #game-canvas {
+        width: 80vh;
+        height: 80vh;
+    }
+}
+
+@media (orientation: portrait) {
+    #game-canvas {
+        width: 100vw;
+        height: 60vh;
+    }
+}
+
+/* Adaptations pour petites résolutions */
+@media (max-width: 360px) {
+    button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
