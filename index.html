@@ -564,7 +564,7 @@
             let powerUps = [];
             let direction = 'right';
             let nextDirection = 'right';
-            let gameSpeed = 3;
+            let gameSpeed = 5;
             let score = 0;
             let lives = 3;
             let level = 1;
@@ -1224,10 +1224,10 @@
                         btn.classList.add('active');
                         difficulty = btn.dataset.difficulty;
                         switch (difficulty) {
-                            case 'easy': gameSpeed = 3; break;
-                            case 'medium': gameSpeed =5 ; break;
+                            case 'easy': gameSpeed = 10; break;
+                            case 'medium': gameSpeed = 8 ; break;
                             case 'hard': gameSpeed = 10; break;
-                            case 'expert': gameSpeed = 15; break;
+                            case 'expert': gameSpeed = 25; break;
                         }
                     });
                 });
