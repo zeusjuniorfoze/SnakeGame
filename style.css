@@ -1,0 +1,257 @@
+:root {
+    --primary: #2196F3;
+    --secondary: #4CAF50;
+    --accent: #FF9800;
+    --background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    --text: #333333;
+    --snake: #4CAF50;
+    --snake-head: #2E7D32;
+    --food: #FF5722;
+    --gold-food: #FFD700;
+    --obstacle: #78909C;
+    --ui-background: rgba(255, 255, 255, 0.95);
+    --button: #2196F3;
+    --button-hover: #1976D2;
+    --neomorph-light: rgba(255, 255, 255, 0.8);
+    --neomorph-dark: rgba(200, 200, 200, 0.3);
+    --grid-color: rgba(0, 0, 0, 0.1);
+    --purple: #6f42c1;
+}
+
+body {
+    background: var(--background);
+    color: var(--text);
+    touch-action: manipulation;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 500px;
+}
+
+#game-canvas {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 12px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.stat {
+    font-weight: 500;
+}
+
+.pause-button {
+    width: 40px;
+    height: 40px;
+    background: var(--ui-background);
+    color: var(--text);
+    font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    z-index: 5;
+    transition: all 0.2s ease;
+}
+
+.pause-button:hover {
+    transform: scale(1.1);
+}
+
+.countdown {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    font-size: 5rem;
+    font-weight: bold;
+    color: var(--primary);
+    z-index: 15;
+}
+
+.screen {
+    background: var(--ui-background);
+    border-radius: 12px;
+    backdrop-filter: blur(5px);
+    transition: opacity 0.3s ease;
+    z-index: 10;
+}
+
+.directional-buttons {
+    bottom: 20px;
+    right: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+}
+
+.dir-btn {
+    width: 60px;
+    height: 60px;
+    background: var(--ui-background);
+    color: var(--text);
+    font-size: 1.5rem;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    transition: all 0.2s ease;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+.dir-btn:active {
+    background: var(--primary);
+    color: white;
+    transform: scale(0.95);
+}
+
+#up-btn {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+#left-btn {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+#right-btn {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+#down-btn {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.food-icon {
+    width: 30px;
+    height: 30px;
+    font-weight: bold;
+}
+
+.bg-purple {
+    background-color: var(--purple);
+}
+
+/* Haptic feedback for mobile */
+@media (hover: none) {
+    .dir-btn:active {
+        background: var(--primary);
+        color: white;
+    }
+    
+    .btn:active {
+        transform: scale(0.98);
+    }
+}
+
+/* Landscape mode for tablets */
+@media (min-width: 768px) and (orientation: landscape) {
+    .game-container {
+        max-width: 700px;
+    }
+    
+    .directional-buttons {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+    .dir-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Improved contrast for accessibility */
+.stat, .btn, .dir-btn {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Button states */
+.btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn:focus, .dir-btn:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+/* Progress indicators */
+.progress {
+    height: 8px;
+    margin-top: 5px;
+}
+
+/* Toast styling */
+.toast {
+    background: var(--ui-background);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+/* Food explanation improvements */
+.food-explanation {
+    transition: transform 0.2s ease;
+}
+
+.food-explanation:hover {
+    transform: translateX(5px);
+}
+
+/* Screen transitions */
+.screen {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* Mobile optimizations */
+@media (max-width: 576px) {
+    .directional-buttons {
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    .dir-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+    }
+    
+    .stat {
+        font-size: 0.9rem;
+        padding: 6px 10px;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+    
+    .btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Vibration effect for haptic feedback */
+@keyframes vibrate {
+    0% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+    100% { transform: translate(0); }
+}
+
+.vibrate {
+    animation: vibrate 0.3s linear;
+}
