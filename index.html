@@ -40,9 +40,9 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            overflow: hidden;
+            overflow-x: hidden;
             touch-action: manipulation;
         }
 
@@ -51,6 +51,9 @@
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         #game-canvas {
@@ -249,9 +252,6 @@
         }
 
         .directional-buttons {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
@@ -259,6 +259,8 @@
             opacity: 0.9;
             transition: opacity 0.3s ease;
             z-index: 20;
+            position: relative;
+            margin-top: 20px;
         }
 
         .directional-buttons:hover {
@@ -266,13 +268,13 @@
         }
 
         .dir-btn {
-            width: 70px;
-            height: 70px;
+            width: 60px;
+            height: 60px;
             background: var(--ui-background);
             border: none;
             border-radius: 50%;
             color: var(--text);
-            font-size: 2rem;
+            font-size: 1.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -462,14 +464,39 @@
                 font-size: 0.9rem;
                 min-width: 120px;
             }
+            body {
+                justify-content: flex-start;
+                padding-top: 20px;
+            }
+            .game-container {
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                max-width: 100%;
+            }
+            #game-canvas {
+                width: 90vw;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .stats-bar {
+                width: 90vw;
+                max-width: 400px;
+                margin: 0 auto;
+                padding: 10px 0;
+            }
             .directional-buttons {
+                position: fixed;
                 bottom: 20px;
-                right: 20px;
+                left: 50%;
+                transform: translateX(-50%);
+                margin-top: 0;
+                width: auto;
             }
             .dir-btn {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
             }
         }
 
@@ -739,10 +766,10 @@
 
             // Objectifs de niveau
             const levelTargets = {
-                1: 1500,
-                2: 2500,
-                3: 5000,
-                4: 7500,
+                1: 2000,
+                2: 4000,
+                3: 6000,
+                4: 8000,
                 5: 10000
             };
 
@@ -934,8 +961,17 @@
 
             function nextLevel() {
                 level++;
+                score = 0; // Reset score for the new level
                 gameSpeed += 2;
-                generateObstacles(level * 2);
+                snake = [{ x: 5, y: 10 }, { x: 4, y: 10 }, { x: 3, y: 10 }]; // Reset snake
+                direction = 'right';
+                nextDirection = 'right';
+                activePowerUps = {}; // Clear power-ups
+                obstacles = []; // Clear obstacles
+                powerUps = []; // Clear power-ups
+                generateFood(); // Generate new food
+                generateObstacles(level * 2); // Generate obstacles for new level
+                updateUI();
                 levelCompleteModal.classList.add('hidden');
                 startCountdown(() => {
                     gameRunning = true;
